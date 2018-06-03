@@ -19,8 +19,8 @@ class SFPlugin: Plugin() {
   companion object {
     val GSON: Gson = GsonBuilder().disableHtmlEscaping().create()
 
-    val UUID_URL: String = "https://api.mojang.com"
-    val SESSION_URL: String =
+    const val UUID_URL: String = "https://api.mojang.com"
+    const val SESSION_URL: String =
       "https://sessionserver.mojang.com/session/minecraft/profile/%s?unsigned=false"
     val TRY_AGAIN_MESSAGE: String =
       "&cToo many people are trying to connect at one time, wait and try again later.".color()

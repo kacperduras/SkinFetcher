@@ -1,6 +1,7 @@
 package pl.kacperduras.skinfetcher
 
 import com.google.gson.JsonObject
+import net.md_5.bungee.api.chat.TextComponent
 import net.md_5.bungee.api.connection.PendingConnection
 import net.md_5.bungee.api.event.LoginEvent
 import net.md_5.bungee.api.event.PreLoginEvent
@@ -18,7 +19,7 @@ class SFListeners(private val plugin: SFPlugin): Listener {
   @EventHandler
   fun onLogin(event: PreLoginEvent) {
     if (!event.connection.isOnlineMode && !this.plugin.executor.addPending(event)) {
-      event.cancelReason = SFPlugin.TRY_AGAIN_MESSAGE
+      event.setCancelReason(*TextComponent.fromLegacyText(SFPlugin.TRY_AGAIN_MESSAGE));
       event.isCancelled = true
       return
     }
