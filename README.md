@@ -23,5 +23,12 @@ debug: false
 ## Download
 Download is available [here](https://github.com/kacperduras/SkinFetcher/releases).
 
+## Contributing
+
+Feel free to submit pull requests, just make sure your changes are consistent with 
+[Google's Java code style](https://google.github.io/styleguide/javaguide.html) 
+and 
+[Google's Kotlin code style](https://android.github.io/kotlin-guides/style.html).
+
 ## License
 [The Apache License, Version 2.0](LICENSE)
