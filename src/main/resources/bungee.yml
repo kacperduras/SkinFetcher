@@ -1,0 +1,5 @@
+name: '${project.name}'
+author: 'Kacper Duras <contact@kacperduras.pl>'
+website: 'http://kacperduras.pl'
+version: '${project.version}'
+main: 'pl.kacperduras.skinfetcher.SFPlugin'
