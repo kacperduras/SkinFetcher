@@ -1,1 +1,4 @@
 debug: false
+
+queue:
+  time: 3
