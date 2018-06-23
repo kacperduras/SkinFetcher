@@ -49,7 +49,7 @@ class SFListeners(private val plugin: SFPlugin): Listener {
 
         val result: JsonObject? = call.fetch()
 
-        if(result == null) {
+        if (result == null) {
           event.completeIntent(this.plugin)
           return@runAsync
         }
