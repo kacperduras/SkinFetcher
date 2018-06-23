@@ -23,8 +23,6 @@ class SFListeners(private val plugin: SFPlugin): Listener {
       event.isCancelled = true
       return
     }
-
-    event.registerIntent(this.plugin)
   }
 
   @EventHandler
@@ -39,14 +37,22 @@ class SFListeners(private val plugin: SFPlugin): Listener {
 
     val uuid = this.plugin.executor.getUUID(connection.name) ?: return
 
-    this.plugin.proxy.scheduler.runAsync(this.plugin, {
+    event.registerIntent(this.plugin)
+
+    this.plugin.proxy.scheduler.runAsync(this.plugin) {
       try {
         val call: Call<JsonObject> = this.service.profile(SFPlugin.SESSION_URL.format(uuid.trim()))
         if (call.isCanceled) {
+          event.completeIntent(this.plugin)
           return@runAsync
         }
 
-        val result: JsonObject = call.fetch() ?: return@runAsync
+        val result: JsonObject? = call.fetch()
+
+        if(result == null) {
+          event.completeIntent(this.plugin)
+          return@runAsync
+        }
 
         val properties: MutableList<LoginResult.Property?> = mutableListOf()
         result.getAsJsonArray("properties").forEach {
@@ -69,9 +75,7 @@ class SFListeners(private val plugin: SFPlugin): Listener {
       } finally {
         event.completeIntent(this.plugin)
       }
-    })
-
-    event.registerIntent(this.plugin)
+    }
   }
 
   private fun InitialHandler.inject(profile: LoginResult) {
