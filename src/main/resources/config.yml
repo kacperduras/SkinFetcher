@@ -4,4 +4,4 @@
 debug: false # debug configuration
 
 queue:
-  time: 3 # how many seconds the queue should refresh (min.: 1)
+  time: 2 # how many seconds the queue should refresh (min.: 1, recommended: 2-3)
