@@ -48,7 +48,7 @@ class SFPlugin: Plugin() {
   override fun onEnable() {
     var queueTime = this.configuration.getLong("queue.time")
     if (queueTime < 1) {
-      queueTime = 3 // default value
+      queueTime = 2 // default value
     }
 
     this.proxy.scheduler.schedule(this, executor, queueTime, queueTime, TimeUnit.SECONDS)
