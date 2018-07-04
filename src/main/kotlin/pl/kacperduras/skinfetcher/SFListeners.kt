@@ -19,7 +19,7 @@ class SFListeners(private val plugin: SFPlugin): Listener {
   @EventHandler
   fun onLogin(event: PreLoginEvent) {
     if (!event.connection.isOnlineMode && !this.plugin.executor.addPending(event)) {
-      event.setCancelReason(*TextComponent.fromLegacyText(SFPlugin.TRY_AGAIN_MESSAGE));
+      event.setCancelReason(*TextComponent.fromLegacyText(this.plugin.tryAgainMessage))
       event.isCancelled = true
       return
     }

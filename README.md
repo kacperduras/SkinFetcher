@@ -18,6 +18,12 @@ Why generate unnecessary server load?
 ## Configuration
 ```yaml
 debug: false
+
+queue:
+  time: 2
+  
+messages:
+  try-again: "&cToo many people are trying to connect at one time, wait and try again later."
 ```
 
 ## Download

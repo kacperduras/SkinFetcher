@@ -4,14 +4,14 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import net.md_5.bungee.api.plugin.Plugin
 import net.md_5.bungee.config.Configuration
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
-import net.md_5.bungee.config.YamlConfiguration
 import net.md_5.bungee.config.ConfigurationProvider
+import net.md_5.bungee.config.YamlConfiguration
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import pl.kacperduras.skinfetcher.api.APIExecutor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 class SFPlugin: Plugin() {
@@ -22,13 +22,12 @@ class SFPlugin: Plugin() {
     const val UUID_URL: String = "https://api.mojang.com"
     const val SESSION_URL: String =
       "https://sessionserver.mojang.com/session/minecraft/profile/%s?unsigned=false"
-    val TRY_AGAIN_MESSAGE: String =
-      "&cToo many people are trying to connect at one time, wait and try again later.".color()
   }
 
   private lateinit var configuration: Configuration
   private lateinit var retrofit: Retrofit
   lateinit var executor: APIExecutor
+  lateinit var tryAgainMessage : String
 
   override fun onLoad() {
     this.dataFolder.createDirectoryIfNotExists()
@@ -50,6 +49,9 @@ class SFPlugin: Plugin() {
     if (queueTime < 1) {
       queueTime = 2 // default value
     }
+
+    this.tryAgainMessage =
+      this.configuration.getString("messages.try-again").color()
 
     this.proxy.scheduler.schedule(this, executor, queueTime, queueTime, TimeUnit.SECONDS)
     this.proxy.pluginManager.registerListener(this, SFListeners(this))
