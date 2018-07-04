@@ -16,16 +16,16 @@ class SFListeners(private val plugin: SFPlugin): Listener {
 
   private val service: APIService = this.plugin.service(APIService::class.java)
 
-  @EventHandler
+  @EventHandler(priority = 96)
   fun onLogin(event: PreLoginEvent) {
     if (!event.connection.isOnlineMode && !this.plugin.executor.addPending(event)) {
-      event.setCancelReason(*TextComponent.fromLegacyText(SFPlugin.TRY_AGAIN_MESSAGE));
+      event.setCancelReason(*TextComponent.fromLegacyText(this.plugin.tryAgainMessage))
       event.isCancelled = true
       return
     }
   }
 
-  @EventHandler
+  @EventHandler(priority = 96)
   fun onLogin(event: LoginEvent) {
     val connection: PendingConnection = event.connection
     if (connection.isOnlineMode) {
