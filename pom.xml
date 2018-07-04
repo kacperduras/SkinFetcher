@@ -7,7 +7,7 @@
   <name>SkinFetcher</name>
   <groupId>pl.kacperduras</groupId>
   <artifactId>skinfetcher</artifactId>
-  <version>1.0.2.1</version>
+  <version>1.0.1</version>
 
   <properties>
     <kotlin.version>1.2.50</kotlin.version>
