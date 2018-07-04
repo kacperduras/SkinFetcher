@@ -7,4 +7,4 @@ queue:
   time: 2 # how many seconds the queue should refresh (min.: 1, recommended: 2-3)
 
 messages:
-  try-again: "&cToo many people are trying to connect at one time, wait and try again later."
+  try-again: "&cToo many people are trying to connect at one time, wait and try again later." # kick message when more than 100 players try to connect to the server at the same time
