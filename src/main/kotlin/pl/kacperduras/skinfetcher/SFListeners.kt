@@ -39,6 +39,8 @@ class SFListeners(private val plugin: SFPlugin): Listener {
 
     val uuid = this.plugin.executor.getUUID(connection.name) ?: return
 
+    event.registerIntent(this.plugin)
+    
     this.plugin.proxy.scheduler.runAsync(this.plugin, {
       try {
         val call: Call<JsonObject> = this.service.profile(SFPlugin.SESSION_URL.format(uuid.trim()))
@@ -70,8 +72,6 @@ class SFListeners(private val plugin: SFPlugin): Listener {
         event.completeIntent(this.plugin)
       }
     })
-
-    event.registerIntent(this.plugin)
   }
 
   private fun InitialHandler.inject(profile: LoginResult) {
